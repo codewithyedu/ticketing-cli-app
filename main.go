@@ -8,11 +8,12 @@ import (
 
 const conferenceTickets uint = 50
 
-var conferenceName = "Go conference"
-var remainingTickets = conferenceTickets
-var bookings []UserData
-
-var wg = sync.WaitGroup{}
+var (
+	remainingTickets = conferenceTickets
+	conferenceName   = "Go conference"
+	wg               = sync.WaitGroup{}
+	bookings         []UserData
+)
 
 // UserData struct to store information about each booking
 type UserData struct {
