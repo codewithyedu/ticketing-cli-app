@@ -92,27 +92,23 @@ func getUserInput() (string, string, string, uint) {
 	var userTickets uint
 
 	fmt.Println("Enter your first name:")
-	_, err1 := fmt.Scan(&firstName)
-	if err1 != nil {
-		fmt.Println(err1)
+	if _, err := fmt.Scan(&firstName); err != nil {
+		fmt.Println("Error:", err)
 	}
 
 	fmt.Println("Enter your last name:")
-	_, err2 := fmt.Scan(&lastName)
-	if err2 != nil {
-		fmt.Println(err2)
+	if _, err := fmt.Scan(&lastName); err != nil {
+		fmt.Println("Error:", err)
 	}
 
 	fmt.Println("Enter your email address:")
-	_, err3 := fmt.Scan(&email)
-	if err3 != nil {
-		fmt.Println(err3)
+	if _, err := fmt.Scan(&email); err != nil {
+		fmt.Println("Error:", err)
 	}
 
 	fmt.Println("Enter number of tickets:")
-	_, err4 := fmt.Scan(&userTickets)
-	if err4 != nil {
-		fmt.Println(err4)
+	if _, err := fmt.Scan(&userTickets); err != nil {
+		fmt.Println("Error:", err)
 	}
 
 	return firstName, lastName, email, userTickets
