@@ -47,16 +47,7 @@ func main() {
 			}
 		} else {
 			// Display error messages for invalid inputs
-			if !isValidName {
-				fmt.Println("Error: Name too short.")
-			}
-			if !isValidEmail {
-				fmt.Println("Error: Invalid email.")
-			}
-			if !isValidTicketNumber {
-				fmt.Printf("Error: Invalid ticket number. Tickets remaining: %v", remainingTickets)
-			}
-			fmt.Println("Please try again.")
+			handleErrors(isValidName, isValidEmail, isValidTicketNumber)
 		}
 	}
 	// Wait for all goroutines to finish before exiting the program
@@ -93,7 +84,7 @@ func getUserInput() (firstName, lastName, email string, userTickets uint) {
 	return firstName, lastName, email, userTickets
 }
 
-func bookTicket(firstName string, lastName string, email string, userTickets uint) {
+func bookTicket(firstName, lastName, email string, userTickets uint) {
 	userData := UserData{
 		firstName:       firstName,
 		lastName:        lastName,
@@ -118,7 +109,7 @@ func getFirstNames() []string {
 	return firstNames
 }
 
-func sendTicket(firstName string, lastName string, email string, userTickets uint) {
+func sendTicket(firstName, lastName, email string, userTickets uint) {
 	// Decrement the WaitGroup counter to indicate this goroutine is complete
 	wg.Done()
 	time.Sleep(10 * time.Second)
@@ -126,4 +117,17 @@ func sendTicket(firstName string, lastName string, email string, userTickets uin
 	fmt.Println("##########")
 	fmt.Printf("Sending ticket:\n %v \n to email address %v\n", ticket, email)
 	fmt.Println("##########")
+}
+
+func handleErrors(isValidName, isValidEmail, isValidTicketNumber bool) {
+	if !isValidName {
+		fmt.Println("Error: Name too short.")
+	}
+	if !isValidEmail {
+		fmt.Println("Error: Invalid email.")
+	}
+	if !isValidTicketNumber {
+		fmt.Printf("Error: Invalid ticket number. Tickets remaining: %v", remainingTickets)
+	}
+	fmt.Println("Please try again.")
 }
