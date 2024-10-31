@@ -12,7 +12,7 @@ func TestInvalidEmail(t *testing.T) {
 
 	_, isValidEmail, _ := validateUserInput(fName, lName, email, userTickets)
 	if isValidEmail {
-		t.Errorf("'%v' is not a valid email.", email)
+		t.Errorf("TestInvalidEmail Failed: '%v' is not a valid email.", email)
 	}
 }
 
@@ -26,7 +26,7 @@ func TestInvalidName(t *testing.T) {
 
 	isValidName, _, _ := validateUserInput(fName, lName, email, userTickets)
 	if isValidName {
-		t.Errorf("'%v %v' is not a valid name.", fName, lName)
+		t.Errorf("TestInvalidName Failed: '%v %v' is not a valid name.", fName, lName)
 	}
 }
 
@@ -40,6 +40,6 @@ func TestInvalidUserTickets(t *testing.T) {
 
 	_, _, isValidTicketNumber := validateUserInput(fName, lName, email, userTickets)
 	if isValidTicketNumber {
-		t.Errorf("'%v' is not a valid ticket number.", userTickets)
+		t.Errorf("TestInvalidTicketNumber Failed: '%v' is not a valid ticket number.", userTickets)
 	}
 }
