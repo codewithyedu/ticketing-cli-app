@@ -25,6 +25,7 @@ type UserData struct {
 
 func main() {
 	greetUsers()
+
 	for {
 		firstName, lastName, email, userTickets := getUserInput()
 		isValidName, isValidEmail, isValidTicketNumber := validateUserInput(
@@ -33,6 +34,7 @@ func main() {
 			email,
 			userTickets,
 		)
+
 		if isValidName && isValidEmail && isValidTicketNumber {
 			bookTicket(firstName, lastName, email, userTickets)
 			// Set the number of goroutines to wait for
@@ -41,10 +43,12 @@ func main() {
 			go sendTicket(firstName, lastName, email, userTickets)
 			firstNames := getFirstNames()
 			fmt.Printf("These are our bookings: %v\n", firstNames)
+
 			if remainingTickets == 0 {
 				fmt.Println("Sold out")
 				break
 			}
+
 		} else {
 			// Display error messages for invalid inputs
 			handleErrors(isValidName, isValidEmail, isValidTicketNumber)
@@ -81,6 +85,7 @@ func getUserInput() (firstName, lastName, email string, userTickets uint) {
 	if _, err := fmt.Scan(&userTickets); err != nil {
 		fmt.Println("Error:", err)
 	}
+
 	return firstName, lastName, email, userTickets
 }
 
@@ -91,8 +96,10 @@ func bookTicket(firstName, lastName, email string, userTickets uint) {
 		email:           email,
 		numberOfTickets: userTickets,
 	}
+
 	bookings = append(bookings, userData)
 	remainingTickets -= userTickets
+
 	fmt.Printf(
 		"Thank you %v %v for purchasing %v tickets. A confirmation email will be sent to %v.\n",
 		firstName, lastName, userTickets, email,
@@ -102,10 +109,12 @@ func bookTicket(firstName, lastName, email string, userTickets uint) {
 
 func getFirstNames() []string {
 	var firstNames []string
+
 	for _, booking := range bookings {
 		firstName := booking.firstName
 		firstNames = append(firstNames, firstName)
 	}
+
 	return firstNames
 }
 
