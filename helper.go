@@ -13,5 +13,6 @@ func validateUserInput(
 	isValidName = (len(firstName) >= 2) && (len(lastName) >= 1)
 	isValidEmail = strings.Contains(email, "@")
 	isValidTicketNumber = (userTickets > 0) && (userTickets <= remainingTickets)
+
 	return isValidName, isValidEmail, isValidTicketNumber
 }
